@@ -4,6 +4,13 @@ body {
 	font-size: 14px;
 	line-height: 1.5;
 	color: #333;
+	background-color:#f2eee2;
+	transition:background-color 0.3s;
+}
+
+body.dark-mode {
+	background-color: #1d3040;
+	color: #bfc2c7;
 }
 
 h1, h2, h3, h4, h5, h6 {
