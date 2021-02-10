@@ -1,6 +1,6 @@
 <script lang="ts">
     import SwitchButton from './SwitchButton.svelte'
-    let darkMode = false;
+
 	let title = 'Countdown timer'
 </script>
 
@@ -23,6 +23,9 @@
     .title-box {
 		text-transform: uppercase;
     }
+    .title-box > h2 {
+		margin: 0;
+    }
 
     .switch-dark-mode {
         align-items: center;
@@ -30,6 +33,10 @@
         float: right;
         grid-template-columns: auto auto;
     }
+
+	.switch-dark-mode > h3 {
+		margin: 0;
+	}
 
 </style>
 
@@ -40,7 +47,7 @@
 		</li>
 		<li class="switch-dark-mode">
 			<h3>dark mode</h3>
-			<SwitchButton bind:checked={darkMode} />
+			<SwitchButton />
 		</li>
 	</ul>
 </nav>

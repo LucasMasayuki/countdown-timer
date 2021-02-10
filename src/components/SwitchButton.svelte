@@ -1,8 +1,30 @@
-<script>
-    export let checked = false;
+<script lang="ts">
+    import { theme } from '../shared/store';
+  	import { onMount } from 'svelte';
+
+    let themeMode;
+    let checked;
+
+    onMount( () => {
+      themeMode = window.localStorage.getItem('theme') ?? 'light'
+      checked = themeMode === 'dark'
+
+      if (checked) {
+        window.document.body.classList.toggle('dark-mode')
+      }
+
+      theme.update(value => themeMode)
+    });
+
+    theme.subscribe((value) => {
+      checked = themeMode === 'dark'
+    })
 
     function onChangeSwitchDarkMode() {
-        window.document.body.classList.toggle('dark-mode')
+      const themeMode = !checked ? 'dark' : 'light'
+      window.document.body.classList.toggle('dark-mode')
+      theme.update(value => themeMode)
+      window.localStorage.setItem('theme', themeMode)
     }
 </script>
 
