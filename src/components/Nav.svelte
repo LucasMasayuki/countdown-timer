@@ -12,12 +12,11 @@
 	ul {
 		align-items: center;
         display: inline-grid;
-        grid-template-columns: 85% 15%;
-        width: -webkit-fill-available;
-	}
-
-	ul {
+        grid-template-columns: auto auto;
 		list-style: none;
+		padding-left: 20px;
+		padding-right: 10px;
+        width: -webkit-fill-available;
 	}
 
     .title-box {
@@ -28,14 +27,28 @@
     }
 
     .switch-dark-mode {
-        align-items: center;
-        display: inline-grid;
-        float: right;
-        grid-template-columns: auto auto;
+		text-align: end;
     }
 
 	.switch-dark-mode > h3 {
+		display: inline-block;
 		margin: 0;
+		vertical-align: -webkit-baseline-middle;
+	}
+	@media only screen and (max-width: 768px){
+		h2 {
+			font-size: 1em;
+		}
+	}
+
+	@media only screen and (max-width: 400px){
+		h2 {
+			font-size: 1em;
+		}
+
+		.switch-dark-mode {
+			font-size: 12px;
+		}
 	}
 
 </style>

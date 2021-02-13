@@ -81,6 +81,27 @@
       -ms-transform: translateX(26px);
       transform: translateX(26px);
     }
+
+
+    @media only screen and (max-width: 768px){
+      .switch {
+        width: 40px;
+        height: 26px;
+      }
+
+      .slider:before {
+        height: 16px;
+        width: 16px;
+      }
+
+      input:checked + .slider:before {
+        -webkit-transform: translateX(16px);
+        -ms-transform: translateX(16px);
+        transform: translateX(16
+        px);
+      }
+
+    }
 </style>
 
 <label class="switch">
