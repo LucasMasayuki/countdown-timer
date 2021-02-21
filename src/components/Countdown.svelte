@@ -9,13 +9,31 @@
 	}
 
 	const now = new Date()
-	export let title = 'Time to tomorrow'
-	export let target: Date = defaultDate();
-	export let timePassed = Math.abs(target.getTime() / 1000);
+	export let eventTitle: String
+	export let targetTime: Date
+	export let timePassed = targetTime !== null ? Math.abs(targetTime.getTime() / 1000) - Math.abs(now.getTime() / 1000) : 0
 	let state = initState()
+	let prevTargetTime = targetTime
+	let setIntervalVar: any
+
+	$: {
+		if (targetTime !== null && prevTargetTime.getTime() !== targetTime.getTime()) {
+			timePassed = targetTime != null ? Math.abs(targetTime.getTime() / 1000) - Math.abs(now.getTime() / 1000) : 0
+			state = initState()
+			prevTargetTime = targetTime
+		} else if (timePassed) {
+			state = initState()
+		}
+	}
 
 	onMount(() => {
-		setInterval(() => {
+		const supportNotification = 'Notification' in window
+
+		if (supportNotification && Notification.permission !== 'denied' && Notification.permission !== 'granted') {
+			Notification.requestPermission((permission) => {});
+		}
+
+	 	setIntervalVar	= setInterval(() => {
 			state.seconds -= 1
 			timePassed -= 1
 			if (timePassed >= 1) {
@@ -33,28 +51,47 @@
 					state.days -= 1
 					state.minutes = 24
 				}
+			} else {
+				notify()
+				clearInterval(setIntervalVar)
 			}
-		}, 1000);
+		}, 1000)
 	})
 
+	function notify() {
+		const supportNotification = 'Notification' in window
+		if (supportNotification && Notification.permission === 'granted') {
+			new Notification(`The time of the event is up ${eventTitle}`);
+		}
+	}
+
 	function initState(): State {
+		if (targetTime === null) {
+			return {
+				days: 0,
+				hours: 0,
+				minutes: 0,
+				seconds: 0,
+			}
+		}
+
 		// get total seconds between the times
-		var delta = Math.abs(target.getTime() - now.getTime()) / 1000;
+		let delta = Math.abs(targetTime.getTime() - now.getTime()) / 1000
 
 		// calculate (and subtract) whole days
-		var days = Math.floor(delta / 86400);
-		delta -= days * 86400;
+		let days = Math.floor(delta / 86400)
+		delta -= days * 86400
 
 		// calculate (and subtract) whole hours
-		var hours = Math.floor(delta / 3600) % 24;
-		delta -= hours * 3600;
+		let hours = Math.floor(delta / 3600) % 24
+		delta -= hours * 3600
 
 		// calculate (and subtract) whole minutes
-		var minutes = Math.floor(delta / 60) % 60;
-		delta -= minutes * 60;
+		let minutes = Math.floor(delta / 60) % 60
+		delta -= minutes * 60
 
 		// what's left is seconds
-		var seconds = delta % 60;
+		let seconds = Math.floor(delta % 60)
 
 		return {
 			days: days,
@@ -64,21 +101,12 @@
 		}
 	}
 
-	function defaultDate(): Date {
-		const tomorrow = new Date(now)
-		tomorrow.setDate(now.getDate() + 1)
-		tomorrow.setHours(0)
-		tomorrow.setMinutes(0)
-		tomorrow.setSeconds(0)
-		return tomorrow
-	}
-
 	function formatTime(time: number): String {
 		if (time < 10) {
-			return `0${time}`;
+			return `0${time}`
 		}
 
-		return `${time}`;
+		return `${time}`
 	}
 </script>
 
@@ -156,7 +184,7 @@
 </style>
 
 <div class="title-content">
-	<h1>{title}</h1>
+	<h1>{eventTitle}</h1>
 </div>
 <div class="countdown-container">
 	<div class="countdown-cell">
