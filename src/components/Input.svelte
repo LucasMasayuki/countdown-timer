@@ -25,8 +25,8 @@
 
 <style>
     .input {
-        display: grid;
-        grid-gap: 0.25rem;
+        display: flex;
+        flex-direction: column;
         width: 100%;
     }
 
@@ -58,6 +58,7 @@
 
 <div class="input">
     <span>{labelText}</span>
+    <br>
     <input id={id} class={hasError()} type={type} value={value} placeholder={placeholder} min={min} max={max}>
     <p class={showError()}>{errorMessage}</p>
 </div>
