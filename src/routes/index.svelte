@@ -1,7 +1,7 @@
 <script>
 	import Countdown from '../components/Countdown.svelte';
 	import Input from '../components/Input.svelte';
-	import { onMount } from 'svelte';
+	import { beforeUpdate, onMount } from 'svelte';
 	const now = new Date()
 
 	let targetTime = defaultDate()
@@ -43,16 +43,7 @@
 		window.localStorage.setItem('eventDate', date)
 	}
 
-	onMount(() => {
-		const localstorageEventName = window.localStorage.getItem('eventTitle')
-		const localstorageEventTime = window.localStorage.getItem('eventTime')
-		const localstorageEventDate = window.localStorage.getItem('eventDate')
-		console.log(eventTitle)
-
-		eventTitle = localstorageEventName != undefined ? localstorageEventName : eventTitle
-		time = localstorageEventTime != undefined ? localstorageEventTime : time
-		date = localstorageEventDate != undefined ? localstorageEventDate : date
-
+	function updateCountdown() {
 		targetTime = new Date(`${date} ${time}`)
 
 		if (targetTime.getTime() < now.getTime()) {
@@ -61,7 +52,23 @@
 		} else {
 			errorMessage = ''
 		}
+	}
+
+	onMount(() => {
+		const localstorageEventName = window.localStorage.getItem('eventTitle')
+		const localstorageEventTime = window.localStorage.getItem('eventTime')
+		const localstorageEventDate = window.localStorage.getItem('eventDate')
+
+		eventTitle = localstorageEventName != undefined ? localstorageEventName : eventTitle
+		time = localstorageEventTime != undefined ? localstorageEventTime : time
+		date = localstorageEventDate != undefined ? localstorageEventDate : date
+
+		updateCountdown()
 	});
+
+	beforeUpdate(() => {
+		updateCountdown()
+	})
 </script>
 
 <style>

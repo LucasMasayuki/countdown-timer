@@ -18,11 +18,15 @@
 
 	$: {
 		if (targetTime !== null && prevTargetTime.getTime() !== targetTime.getTime()) {
-			timePassed = targetTime != null ? Math.abs(targetTime.getTime() / 1000) - Math.abs(now.getTime() / 1000) : 0
+			timePassed = Math.abs(targetTime.getTime() / 1000) - Math.abs(now.getTime() / 1000)
 			state = initState()
 			prevTargetTime = targetTime
-		} else if (timePassed) {
-			state = initState()
+
+			if (setIntervalVar === null) {
+	 			setIntervalVar	= setInterval(updateState, 1000)
+			}
+		} else if (targetTime === null) {
+			clearClockdown()
 		}
 	}
 
@@ -33,30 +37,40 @@
 			Notification.requestPermission((permission) => {});
 		}
 
-	 	setIntervalVar	= setInterval(() => {
-			state.seconds -= 1
-			timePassed -= 1
-			if (timePassed >= 1) {
-				if (state.seconds == 0 && state.minutes != 0) {
-					state.minutes -= 1
-					state.seconds = 60
-				}
-
-				if (state.minutes == 0 && state.hours != 0) {
-					state.hours -= 1
-					state.minutes = 60
-				}
-
-				if (state.hours == 0 && state.days != 0) {
-					state.days -= 1
-					state.minutes = 24
-				}
-			} else {
-				notify()
-				clearInterval(setIntervalVar)
-			}
-		}, 1000)
+	 	setIntervalVar	= setInterval(updateState, 1000)
 	})
+
+	function clearClockdown() {
+		state = initState()
+		timePassed = 0
+		clearInterval(setIntervalVar)
+		setIntervalVar = null
+	}
+
+	function updateState() {
+		state.seconds -= 1
+		timePassed -= 1
+
+		if (timePassed >= 1) {
+			if (state.seconds == 0 && state.minutes != 0) {
+				state.minutes -= 1
+				state.seconds = 60
+			}
+
+			if (state.minutes == 0 && state.hours != 0) {
+				state.hours -= 1
+				state.minutes = 60
+			}
+
+			if (state.hours == 0 && state.days != 0) {
+				state.days -= 1
+				state.minutes = 24
+			}
+		} else {
+			notify()
+			clearInterval(setIntervalVar)
+		}
+	}
 
 	function notify() {
 		const supportNotification = 'Notification' in window

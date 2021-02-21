@@ -36,10 +36,12 @@
     }
 
     .input > input {
+        background-color: white;
         border: 1px solid lightgrey;
         border-radius: 8px;
         outline: none;
         padding: 0.5rem;
+        width: 100%;
     }
 
     .error {
