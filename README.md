@@ -2,8 +2,9 @@
 
 Countdown timer, with event name, the end day and the end time. The countdown updates automatically, when leaving the input.
 
-## Getting started
+## Acess the countdown timer
 
+https://lucasmasayuki.github.io/countdown-timer/
 
 ### Running the project
 
