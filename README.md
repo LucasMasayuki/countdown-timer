@@ -1,6 +1,7 @@
 # Countdown timer
 
-Countdown timer, with event name, the end day and the end time. The countdown updates automatically, when leaving the input.
+Countdown timer developed in svelte with sapper.
+The countdown has the following inputs, a event name, the end day and the end time. The countdown updates automatically, when leaving the input.
 
 ## Acess the countdown timer
 
