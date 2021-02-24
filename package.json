@@ -5,9 +5,9 @@
   "scripts": {
     "dev": "sapper dev --no-hot",
     "build": "sapper build",
-    "export": "NODE_ENV='production' sapper export --basepath countdown-timer",
+    "predeploy": "NODE_ENV='production' sapper export --basepath countdown-timer",
     "start": "node __sapper__/build",
-    "deploy": "yarn export &&  gh-pages -d __sapper__/export",
+    "deploy": "gh-pages -d __sapper__/export/countdown-timer",
     "validate": "svelte-check --ignore src/node_modules/@sapper"
   },
   "dependencies": {

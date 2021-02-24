@@ -26,7 +26,6 @@
 	}
 
 	function onFocusOutEventTitle(e) {
-		console.log(e.currentTarget.value)
 		eventTitle = e.currentTarget.value
 		window.localStorage.setItem('eventTitle', eventTitle)
 	}

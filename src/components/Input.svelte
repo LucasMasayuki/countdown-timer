@@ -15,11 +15,11 @@
 	});
 
     function showError(): string {
-        return errorMessage != undefined ? 'error' : 'error-label'
+        return errorMessage !== undefined && errorMessage !== '' ? 'error' : 'error-label'
     }
 
     function hasError(): string {
-        return errorMessage != undefined ? 'error-input' : ''
+        return errorMessage !== undefined && errorMessage !== '' ? 'error-input' : ''
     }
 </script>
 

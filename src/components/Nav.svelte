@@ -17,6 +17,7 @@
 		padding-left: 20px;
 		padding-right: 10px;
         width: -webkit-fill-available;
+		width: -moz-available;
 	}
 
     .title-box {
@@ -35,6 +36,7 @@
 		margin: 0;
 		vertical-align: -webkit-baseline-middle;
 	}
+
 	@media only screen and (max-width: 768px){
 		h2 {
 			font-size: 1em;

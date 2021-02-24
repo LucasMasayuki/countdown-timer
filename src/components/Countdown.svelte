@@ -34,7 +34,7 @@
 		const supportNotification = 'Notification' in window
 
 		if (supportNotification && Notification.permission !== 'denied' && Notification.permission !== 'granted') {
-			Notification.requestPermission((permission) => {});
+			Notification.requestPermission(() => {});
 		}
 
 	 	setIntervalVar	= setInterval(updateState, 1000)
