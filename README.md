@@ -125,7 +125,7 @@ The following tools were used in the construction of the project:
 -   **[Sapper](https://sapper.svelte.dev/)**
 -   **[Webpack](https://webpack.js.org/)**
 
-> See the file  [package.json](https://github.com/LucasMasayuki/countdown-timer/package.json)
+> See the file  [package.json](https://github.com/LucasMasayuki/countdown-timer/blob/master/package.json)
 
 ---
 
@@ -136,7 +136,7 @@ The following tools were used in the construction of the project:
  <sub><b>Lucas Masayuki</b></sub>
  <br />
 
-[![Linkedin Badge](https://img.shields.io/badge/-Lucas-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/lucastamaribuchi/)](https://www.linkedin.com/in/lucastamaribuchi/) 
+[![Linkedin Badge](https://img.shields.io/badge/-Lucas-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/LucasTamaribuchi/)](https://www.linkedin.com/in/LucasTamaribuchi/) 
 [![Gmail Badge](https://img.shields.io/badge/-lutamaribuchi@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:lutamaribuchi@gmail.com)](mailto:lutamaribucchi@gmail.com)
 
 ---
@@ -145,4 +145,4 @@ The following tools were used in the construction of the project:
 
 This project is under the license [MIT](./LICENSE).
 
-developed by Lucas Masayuki 👋🏽 [Get in Touch!](Https://www.linkedin.com/in/lucastamaribuchi/)
+developed by Lucas Masayuki 👋🏽 [Get in Touch!](Https://www.linkedin.com/in/LucasTamaribuchi/)
